@@ -26,6 +26,13 @@ user_table_create = ("""
 """)
 
 song_table_create = ("""
+CREATE TABLE IF NOT EXISTS songs(
+    song_id VARCHAR(18) PRIMARY KEY ,
+    title VARCHAR(255),
+    artist_id VARCHAR(255),
+    year SMALLINT,
+    duration NUMERIC(11,5)
+);
 """)
 
 artist_table_create = ("""
