@@ -106,13 +106,15 @@ DO NOTHING;
 
 time_table_insert = ("""
 INSERT INTO time(start_time, hour, day, week, month, year, weekday)
-values(%s, %s, %s, %s, %s, %s, %s);
+values(%s, %s, %s, %s, %s, %s, %s)
+ON CONFLICT (start_time)
+DO NOTHING;
 """)
 
 # FIND SONGS
 
 song_select = ("""
-SELECT song_id, a.artist_id, s.title, s.duration, a.name 
+SELECT song_id, a.artist_id 
 FROM 
     songs AS s JOIN artists AS a
     ON s.artist_id = a.artist_id
