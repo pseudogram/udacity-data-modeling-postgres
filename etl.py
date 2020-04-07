@@ -109,15 +109,9 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
-    # conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
-    conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=dattlee")
+    conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
     conn.set_session(autocommit=True)
-
-    for query in drop_table_queries:
-        cur.execute(query)
-    for query in create_table_queries:
-        cur.execute(query)
 
     process_data(cur, conn, filepath="data/song_data", func=process_song_file)
     process_data(cur, conn, filepath="data/log_data", func=process_log_file)
