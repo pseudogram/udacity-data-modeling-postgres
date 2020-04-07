@@ -91,12 +91,16 @@ level = %s;
 
 song_table_insert = ("""
 INSERT INTO songs (song_id, title, artist_id, year, duration)
-VALUES (%s, %s, %s, %s, %s);
+VALUES (%s, %s, %s, %s, %s)
+ON CONFLICT (song_id)
+DO NOTHING;
 """)
 
 artist_table_insert = ("""
 INSERT INTO artists (artist_id, name, location, latitude, longitude)
-VALUES (%s, %s, %s, %s, %s);
+VALUES (%s, %s, %s, %s, %s)
+ON CONFLICT (artist_id)
+DO NOTHING;
 """)
 
 
@@ -117,5 +121,5 @@ WHERE title = %s AND name = %s AND duration = %s;
 
 # QUERY LISTS
 
-create_table_queries = [songplay_table_create, user_table_create, song_table_create, artist_table_create, time_table_create]
+create_table_queries = [user_table_create, song_table_create, artist_table_create, time_table_create, songplay_table_create]
 drop_table_queries = [songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
