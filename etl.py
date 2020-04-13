@@ -18,22 +18,12 @@ def process_song_file(cur, filepath):
     df = pd.read_json(filepath, lines=True)
 
     # insert song record
-    song_id = 6
-    title = 7
-    artist_id = 1
-    year = 9
-    duration = 8
-    song_data = df.to_numpy()[:, [song_id, title, artist_id, year, duration]][0]
+    song_data = df[['song_id', 'title', 'artist_id', 'year', 'duration']].values[0]
 
     cur.execute(song_table_insert, song_data)
 
     # insert artist record
-    artist_id = 1
-    name = 5
-    location = 4
-    latitude = 2
-    longitude = 3
-    artist_data = df.to_numpy()[:, [artist_id, name, location, latitude, longitude]][0]
+    artist_data = df[['artist_id', 'artist_name', 'artist_location', 'artist_latitude', 'artist_longitude']].values[0]
     cur.execute(artist_table_insert, artist_data)
 
 
