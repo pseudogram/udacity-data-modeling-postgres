@@ -129,6 +129,8 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """When executing this file, this function runs processing all files under directories *data/song_data* and 
+    *data/log_data*."""
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
     conn.set_session(autocommit=True)
