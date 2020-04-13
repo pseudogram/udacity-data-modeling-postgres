@@ -6,6 +6,8 @@ import numpy as np
 from sql_queries import *
 from datetime import datetime
 
+pd.set_option('mode.chained_assignment', None)
+
 
 def process_song_file(cur, filepath):
     """Given the path for a song data file, extract data for song and artist tables and load it into database.
