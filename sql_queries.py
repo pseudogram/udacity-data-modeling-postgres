@@ -13,9 +13,9 @@ CREATE TABLE IF NOT EXISTS songplays(
     songplay_id SERIAL,
     start_time TIMESTAMP REFERENCES time(start_time),
     user_id INTEGER REFERENCES users(user_id),
-    level VARCHAR(8),
+    level VARCHAR(50),
     song_id VARCHAR(18) REFERENCES songs(song_id),
-    artist_id VARCHAR(255) REFERENCES artists(artist_id),
+    artist_id VARCHAR(18) REFERENCES artists(artist_id),
     session_id VARCHAR(255),
     location VARCHAR(255),
     user_agent VARCHAR(255)
@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS songplays(
 user_table_create = ("""
 CREATE TABLE IF NOT EXISTS users(
     user_id INTEGER PRIMARY KEY,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    gender VARCHAR(63),
-    level VARCHAR(63)
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    gender VARCHAR(50),
+    level VARCHAR(50)
 );
 """)
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS songs(
 artist_table_create = ("""
 CREATE TABLE IF NOT EXISTS artists(
     artist_id VARCHAR(18) PRIMARY KEY, 
-    name VARCHAR(255),
+    name VARCHAR(100),
     location VARCHAR(255), 
     latitude NUMERIC(8,5), 
     longitude NUMERIC(19,15)
