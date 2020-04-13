@@ -8,6 +8,12 @@ from datetime import datetime
 
 
 def process_song_file(cur, filepath):
+    """Given the path for a song data file, extract data for song and artist tables and load it into database.
+
+    Args:
+        - cur: cursor pointing to database
+        - filepath: path to song data
+    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -32,6 +38,12 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """Given the path for a log data file, extract data for time, user and songplay tables and load it into database.
+
+    Args:
+        - cur: cursor pointing to database
+        - filepath: path to song data
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -90,6 +102,14 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """Given a path directory, traverse all subdirectories and process any files using ``func``.
+
+    Args:
+        - cur: cursor pointing to database
+        - conn: connection to database
+        - filepath: directory containing containg data fo the same format
+        - func: function to process each file
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
